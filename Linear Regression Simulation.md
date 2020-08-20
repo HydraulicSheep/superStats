@@ -51,6 +51,7 @@ import pandas as pd
 import scipy.optimize
 import altair as alt
 import random
+from altair_saver import save
 ```
 
 Let's load some data! This dataset [2] includes two points about a number of mammal species - their **Brain Weight** and **Body Weight**.
@@ -85,7 +86,7 @@ And let's plot the data:
 
 
 ```python
-alt.renderers.enable('html')
+alt.renderers.enable('svg')
 alt.Chart(dataframe).mark_point().encode(
     x=alt.X(field='Brain Weight',type='quantitative'),
     y=alt.Y(field='Body Weight', type='quantitative', sort='x')
@@ -95,56 +96,7 @@ alt.Chart(dataframe).mark_point().encode(
 
 
 
-
-<div id="altair-viz-3ae8ea5ca7134a509aa0d757f1312024"></div>
-<script type="text/javascript">
-  (function(spec, embedOpt){
-    let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-3ae8ea5ca7134a509aa0d757f1312024") {
-      outputDiv = document.getElementById("altair-viz-3ae8ea5ca7134a509aa0d757f1312024");
-    }
-    const paths = {
-      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
-      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
-      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.8.1?noext",
-      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
-    };
-
-    function loadScript(lib) {
-      return new Promise(function(resolve, reject) {
-        var s = document.createElement('script');
-        s.src = paths[lib];
-        s.async = true;
-        s.onload = () => resolve(paths[lib]);
-        s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
-        document.getElementsByTagName("head")[0].appendChild(s);
-      });
-    }
-
-    function showError(err) {
-      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
-      throw err;
-    }
-
-    function displayChart(vegaEmbed) {
-      vegaEmbed(outputDiv, spec, embedOpt)
-        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
-    }
-
-    if(typeof define === "function" && define.amd) {
-      requirejs.config({paths});
-      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
-    } else if (typeof vegaEmbed === "function") {
-      displayChart(vegaEmbed);
-    } else {
-      loadScript("vega")
-        .then(() => loadScript("vega-lite"))
-        .then(() => loadScript("vega-embed"))
-        .catch(showError)
-        .then(() => displayChart(vegaEmbed));
-    }
-  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-038fe16cf7fa3ac06dc0e6e21d97a694"}, "mark": "point", "encoding": {"x": {"type": "quantitative", "field": "Brain Weight"}, "y": {"type": "quantitative", "field": "Body Weight", "sort": "x"}}, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-038fe16cf7fa3ac06dc0e6e21d97a694": [{"Brain Weight": 3.385, "Body Weight": 44.5}, {"Brain Weight": 0.48, "Body Weight": 15.5}, {"Brain Weight": 1.35, "Body Weight": 8.1}, {"Brain Weight": 465.0, "Body Weight": 423.0}, {"Brain Weight": 36.33, "Body Weight": 119.5}, {"Brain Weight": 27.66, "Body Weight": 115.0}, {"Brain Weight": 14.83, "Body Weight": 98.2}, {"Brain Weight": 1.04, "Body Weight": 5.5}, {"Brain Weight": 4.19, "Body Weight": 58.0}, {"Brain Weight": 0.425, "Body Weight": 6.4}, {"Brain Weight": 0.101, "Body Weight": 4.0}, {"Brain Weight": 0.92, "Body Weight": 5.7}, {"Brain Weight": 1.0, "Body Weight": 6.6}, {"Brain Weight": 0.005, "Body Weight": 0.14}, {"Brain Weight": 0.06, "Body Weight": 1.0}, {"Brain Weight": 3.5, "Body Weight": 10.8}, {"Brain Weight": 2.0, "Body Weight": 12.3}, {"Brain Weight": 1.7, "Body Weight": 6.3}, {"Brain Weight": 2547.0, "Body Weight": 4603.0}, {"Brain Weight": 0.023, "Body Weight": 0.3}, {"Brain Weight": 187.1, "Body Weight": 419.0}, {"Brain Weight": 521.0, "Body Weight": 655.0}, {"Brain Weight": 0.785, "Body Weight": 3.5}, {"Brain Weight": 10.0, "Body Weight": 115.0}, {"Brain Weight": 3.3, "Body Weight": 25.6}, {"Brain Weight": 0.2, "Body Weight": 5.0}, {"Brain Weight": 1.41, "Body Weight": 17.5}, {"Brain Weight": 529.0, "Body Weight": 680.0}, {"Brain Weight": 207.0, "Body Weight": 406.0}, {"Brain Weight": 85.0, "Body Weight": 325.0}, {"Brain Weight": 0.75, "Body Weight": 12.3}, {"Brain Weight": 62.0, "Body Weight": 1320.0}, {"Brain Weight": 6654.0, "Body Weight": 5712.0}, {"Brain Weight": 3.5, "Body Weight": 3.9}, {"Brain Weight": 6.8, "Body Weight": 179.0}, {"Brain Weight": 35.0, "Body Weight": 56.0}, {"Brain Weight": 4.05, "Body Weight": 17.0}, {"Brain Weight": 0.12, "Body Weight": 1.0}, {"Brain Weight": 0.023, "Body Weight": 0.4}, {"Brain Weight": 0.01, "Body Weight": 0.25}, {"Brain Weight": 1.4, "Body Weight": 12.5}, {"Brain Weight": 250.0, "Body Weight": 490.0}, {"Brain Weight": 2.5, "Body Weight": 12.1}, {"Brain Weight": 55.5, "Body Weight": 175.0}, {"Brain Weight": 100.0, "Body Weight": 157.0}, {"Brain Weight": 52.16, "Body Weight": 440.0}, {"Brain Weight": 10.55, "Body Weight": 179.5}, {"Brain Weight": 0.55, "Body Weight": 2.4}, {"Brain Weight": 60.0, "Body Weight": 81.0}, {"Brain Weight": 3.6, "Body Weight": 21.0}, {"Brain Weight": 4.288, "Body Weight": 39.2}, {"Brain Weight": 0.28, "Body Weight": 1.9}, {"Brain Weight": 0.075, "Body Weight": 1.2}, {"Brain Weight": 0.122, "Body Weight": 3.0}, {"Brain Weight": 0.048, "Body Weight": 0.33}, {"Brain Weight": 192.0, "Body Weight": 180.0}, {"Brain Weight": 3.0, "Body Weight": 25.0}, {"Brain Weight": 160.0, "Body Weight": 169.0}, {"Brain Weight": 0.9, "Body Weight": 2.6}, {"Brain Weight": 1.62, "Body Weight": 11.4}, {"Brain Weight": 0.104, "Body Weight": 2.5}, {"Brain Weight": 4.235, "Body Weight": 50.4}]}}, {"mode": "vega-lite"});
-</script>
+![svg](Linear%20Regression%20Simulation_files/Linear%20Regression%20Simulation_24_0.svg)
 
 
 
@@ -161,56 +113,7 @@ alt.Chart(dataframe).mark_point(clip=True).encode(
 
 
 
-
-<div id="altair-viz-29f6d50ddba640c6bb871605c8229d02"></div>
-<script type="text/javascript">
-  (function(spec, embedOpt){
-    let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-29f6d50ddba640c6bb871605c8229d02") {
-      outputDiv = document.getElementById("altair-viz-29f6d50ddba640c6bb871605c8229d02");
-    }
-    const paths = {
-      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
-      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
-      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.8.1?noext",
-      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
-    };
-
-    function loadScript(lib) {
-      return new Promise(function(resolve, reject) {
-        var s = document.createElement('script');
-        s.src = paths[lib];
-        s.async = true;
-        s.onload = () => resolve(paths[lib]);
-        s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
-        document.getElementsByTagName("head")[0].appendChild(s);
-      });
-    }
-
-    function showError(err) {
-      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
-      throw err;
-    }
-
-    function displayChart(vegaEmbed) {
-      vegaEmbed(outputDiv, spec, embedOpt)
-        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
-    }
-
-    if(typeof define === "function" && define.amd) {
-      requirejs.config({paths});
-      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
-    } else if (typeof vegaEmbed === "function") {
-      displayChart(vegaEmbed);
-    } else {
-      loadScript("vega")
-        .then(() => loadScript("vega-lite"))
-        .then(() => loadScript("vega-embed"))
-        .catch(showError)
-        .then(() => displayChart(vegaEmbed));
-    }
-  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-038fe16cf7fa3ac06dc0e6e21d97a694"}, "mark": {"type": "point", "clip": true}, "encoding": {"x": {"type": "quantitative", "field": "Brain Weight", "scale": {"domain": [0, 4]}}, "y": {"type": "quantitative", "field": "Body Weight", "scale": {"domain": [0, 30]}, "sort": "x"}}, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-038fe16cf7fa3ac06dc0e6e21d97a694": [{"Brain Weight": 3.385, "Body Weight": 44.5}, {"Brain Weight": 0.48, "Body Weight": 15.5}, {"Brain Weight": 1.35, "Body Weight": 8.1}, {"Brain Weight": 465.0, "Body Weight": 423.0}, {"Brain Weight": 36.33, "Body Weight": 119.5}, {"Brain Weight": 27.66, "Body Weight": 115.0}, {"Brain Weight": 14.83, "Body Weight": 98.2}, {"Brain Weight": 1.04, "Body Weight": 5.5}, {"Brain Weight": 4.19, "Body Weight": 58.0}, {"Brain Weight": 0.425, "Body Weight": 6.4}, {"Brain Weight": 0.101, "Body Weight": 4.0}, {"Brain Weight": 0.92, "Body Weight": 5.7}, {"Brain Weight": 1.0, "Body Weight": 6.6}, {"Brain Weight": 0.005, "Body Weight": 0.14}, {"Brain Weight": 0.06, "Body Weight": 1.0}, {"Brain Weight": 3.5, "Body Weight": 10.8}, {"Brain Weight": 2.0, "Body Weight": 12.3}, {"Brain Weight": 1.7, "Body Weight": 6.3}, {"Brain Weight": 2547.0, "Body Weight": 4603.0}, {"Brain Weight": 0.023, "Body Weight": 0.3}, {"Brain Weight": 187.1, "Body Weight": 419.0}, {"Brain Weight": 521.0, "Body Weight": 655.0}, {"Brain Weight": 0.785, "Body Weight": 3.5}, {"Brain Weight": 10.0, "Body Weight": 115.0}, {"Brain Weight": 3.3, "Body Weight": 25.6}, {"Brain Weight": 0.2, "Body Weight": 5.0}, {"Brain Weight": 1.41, "Body Weight": 17.5}, {"Brain Weight": 529.0, "Body Weight": 680.0}, {"Brain Weight": 207.0, "Body Weight": 406.0}, {"Brain Weight": 85.0, "Body Weight": 325.0}, {"Brain Weight": 0.75, "Body Weight": 12.3}, {"Brain Weight": 62.0, "Body Weight": 1320.0}, {"Brain Weight": 6654.0, "Body Weight": 5712.0}, {"Brain Weight": 3.5, "Body Weight": 3.9}, {"Brain Weight": 6.8, "Body Weight": 179.0}, {"Brain Weight": 35.0, "Body Weight": 56.0}, {"Brain Weight": 4.05, "Body Weight": 17.0}, {"Brain Weight": 0.12, "Body Weight": 1.0}, {"Brain Weight": 0.023, "Body Weight": 0.4}, {"Brain Weight": 0.01, "Body Weight": 0.25}, {"Brain Weight": 1.4, "Body Weight": 12.5}, {"Brain Weight": 250.0, "Body Weight": 490.0}, {"Brain Weight": 2.5, "Body Weight": 12.1}, {"Brain Weight": 55.5, "Body Weight": 175.0}, {"Brain Weight": 100.0, "Body Weight": 157.0}, {"Brain Weight": 52.16, "Body Weight": 440.0}, {"Brain Weight": 10.55, "Body Weight": 179.5}, {"Brain Weight": 0.55, "Body Weight": 2.4}, {"Brain Weight": 60.0, "Body Weight": 81.0}, {"Brain Weight": 3.6, "Body Weight": 21.0}, {"Brain Weight": 4.288, "Body Weight": 39.2}, {"Brain Weight": 0.28, "Body Weight": 1.9}, {"Brain Weight": 0.075, "Body Weight": 1.2}, {"Brain Weight": 0.122, "Body Weight": 3.0}, {"Brain Weight": 0.048, "Body Weight": 0.33}, {"Brain Weight": 192.0, "Body Weight": 180.0}, {"Brain Weight": 3.0, "Body Weight": 25.0}, {"Brain Weight": 160.0, "Body Weight": 169.0}, {"Brain Weight": 0.9, "Body Weight": 2.6}, {"Brain Weight": 1.62, "Body Weight": 11.4}, {"Brain Weight": 0.104, "Body Weight": 2.5}, {"Brain Weight": 4.235, "Body Weight": 50.4}]}}, {"mode": "vega-lite"});
-</script>
+![svg](Linear%20Regression%20Simulation_files/Linear%20Regression%20Simulation_26_0.svg)
 
 
 
@@ -230,56 +133,7 @@ c1
 
 
 
-
-<div id="altair-viz-0da3a7e4e939440d9d674bff872fe8ee"></div>
-<script type="text/javascript">
-  (function(spec, embedOpt){
-    let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-0da3a7e4e939440d9d674bff872fe8ee") {
-      outputDiv = document.getElementById("altair-viz-0da3a7e4e939440d9d674bff872fe8ee");
-    }
-    const paths = {
-      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
-      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
-      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.8.1?noext",
-      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
-    };
-
-    function loadScript(lib) {
-      return new Promise(function(resolve, reject) {
-        var s = document.createElement('script');
-        s.src = paths[lib];
-        s.async = true;
-        s.onload = () => resolve(paths[lib]);
-        s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
-        document.getElementsByTagName("head")[0].appendChild(s);
-      });
-    }
-
-    function showError(err) {
-      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
-      throw err;
-    }
-
-    function displayChart(vegaEmbed) {
-      vegaEmbed(outputDiv, spec, embedOpt)
-        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
-    }
-
-    if(typeof define === "function" && define.amd) {
-      requirejs.config({paths});
-      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
-    } else if (typeof vegaEmbed === "function") {
-      displayChart(vegaEmbed);
-    } else {
-      loadScript("vega")
-        .then(() => loadScript("vega-lite"))
-        .then(() => loadScript("vega-embed"))
-        .catch(showError)
-        .then(() => displayChart(vegaEmbed));
-    }
-  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-038fe16cf7fa3ac06dc0e6e21d97a694"}, "mark": "point", "encoding": {"x": {"type": "quantitative", "field": "Brain Weight", "scale": {"type": "log"}}, "y": {"type": "quantitative", "field": "Body Weight", "scale": {"type": "log"}, "sort": "x"}}, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-038fe16cf7fa3ac06dc0e6e21d97a694": [{"Brain Weight": 3.385, "Body Weight": 44.5}, {"Brain Weight": 0.48, "Body Weight": 15.5}, {"Brain Weight": 1.35, "Body Weight": 8.1}, {"Brain Weight": 465.0, "Body Weight": 423.0}, {"Brain Weight": 36.33, "Body Weight": 119.5}, {"Brain Weight": 27.66, "Body Weight": 115.0}, {"Brain Weight": 14.83, "Body Weight": 98.2}, {"Brain Weight": 1.04, "Body Weight": 5.5}, {"Brain Weight": 4.19, "Body Weight": 58.0}, {"Brain Weight": 0.425, "Body Weight": 6.4}, {"Brain Weight": 0.101, "Body Weight": 4.0}, {"Brain Weight": 0.92, "Body Weight": 5.7}, {"Brain Weight": 1.0, "Body Weight": 6.6}, {"Brain Weight": 0.005, "Body Weight": 0.14}, {"Brain Weight": 0.06, "Body Weight": 1.0}, {"Brain Weight": 3.5, "Body Weight": 10.8}, {"Brain Weight": 2.0, "Body Weight": 12.3}, {"Brain Weight": 1.7, "Body Weight": 6.3}, {"Brain Weight": 2547.0, "Body Weight": 4603.0}, {"Brain Weight": 0.023, "Body Weight": 0.3}, {"Brain Weight": 187.1, "Body Weight": 419.0}, {"Brain Weight": 521.0, "Body Weight": 655.0}, {"Brain Weight": 0.785, "Body Weight": 3.5}, {"Brain Weight": 10.0, "Body Weight": 115.0}, {"Brain Weight": 3.3, "Body Weight": 25.6}, {"Brain Weight": 0.2, "Body Weight": 5.0}, {"Brain Weight": 1.41, "Body Weight": 17.5}, {"Brain Weight": 529.0, "Body Weight": 680.0}, {"Brain Weight": 207.0, "Body Weight": 406.0}, {"Brain Weight": 85.0, "Body Weight": 325.0}, {"Brain Weight": 0.75, "Body Weight": 12.3}, {"Brain Weight": 62.0, "Body Weight": 1320.0}, {"Brain Weight": 6654.0, "Body Weight": 5712.0}, {"Brain Weight": 3.5, "Body Weight": 3.9}, {"Brain Weight": 6.8, "Body Weight": 179.0}, {"Brain Weight": 35.0, "Body Weight": 56.0}, {"Brain Weight": 4.05, "Body Weight": 17.0}, {"Brain Weight": 0.12, "Body Weight": 1.0}, {"Brain Weight": 0.023, "Body Weight": 0.4}, {"Brain Weight": 0.01, "Body Weight": 0.25}, {"Brain Weight": 1.4, "Body Weight": 12.5}, {"Brain Weight": 250.0, "Body Weight": 490.0}, {"Brain Weight": 2.5, "Body Weight": 12.1}, {"Brain Weight": 55.5, "Body Weight": 175.0}, {"Brain Weight": 100.0, "Body Weight": 157.0}, {"Brain Weight": 52.16, "Body Weight": 440.0}, {"Brain Weight": 10.55, "Body Weight": 179.5}, {"Brain Weight": 0.55, "Body Weight": 2.4}, {"Brain Weight": 60.0, "Body Weight": 81.0}, {"Brain Weight": 3.6, "Body Weight": 21.0}, {"Brain Weight": 4.288, "Body Weight": 39.2}, {"Brain Weight": 0.28, "Body Weight": 1.9}, {"Brain Weight": 0.075, "Body Weight": 1.2}, {"Brain Weight": 0.122, "Body Weight": 3.0}, {"Brain Weight": 0.048, "Body Weight": 0.33}, {"Brain Weight": 192.0, "Body Weight": 180.0}, {"Brain Weight": 3.0, "Body Weight": 25.0}, {"Brain Weight": 160.0, "Body Weight": 169.0}, {"Brain Weight": 0.9, "Body Weight": 2.6}, {"Brain Weight": 1.62, "Body Weight": 11.4}, {"Brain Weight": 0.104, "Body Weight": 2.5}, {"Brain Weight": 4.235, "Body Weight": 50.4}]}}, {"mode": "vega-lite"});
-</script>
+![svg](Linear%20Regression%20Simulation_files/Linear%20Regression%20Simulation_29_0.svg)
 
 
 
@@ -303,56 +157,7 @@ alt.Chart(source).mark_line().transform_calculate(
 
 
 
-
-<div id="altair-viz-693d964f6c6144da8c741f2c9c751299"></div>
-<script type="text/javascript">
-  (function(spec, embedOpt){
-    let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-693d964f6c6144da8c741f2c9c751299") {
-      outputDiv = document.getElementById("altair-viz-693d964f6c6144da8c741f2c9c751299");
-    }
-    const paths = {
-      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
-      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
-      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.8.1?noext",
-      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
-    };
-
-    function loadScript(lib) {
-      return new Promise(function(resolve, reject) {
-        var s = document.createElement('script');
-        s.src = paths[lib];
-        s.async = true;
-        s.onload = () => resolve(paths[lib]);
-        s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
-        document.getElementsByTagName("head")[0].appendChild(s);
-      });
-    }
-
-    function showError(err) {
-      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
-      throw err;
-    }
-
-    function displayChart(vegaEmbed) {
-      vegaEmbed(outputDiv, spec, embedOpt)
-        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
-    }
-
-    if(typeof define === "function" && define.amd) {
-      requirejs.config({paths});
-      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
-    } else if (typeof vegaEmbed === "function") {
-      displayChart(vegaEmbed);
-    } else {
-      loadScript("vega")
-        .then(() => loadScript("vega-lite"))
-        .then(() => loadScript("vega-embed"))
-        .catch(showError)
-        .then(() => displayChart(vegaEmbed));
-    }
-  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"sequence": {"start": 1, "stop": 10000, "step": 0.5, "as": "x"}}, "mark": "line", "encoding": {"color": {"type": "nominal", "field": "key"}, "x": {"type": "quantitative", "field": "x", "scale": {"type": "log"}}, "y": {"type": "quantitative", "field": "value", "scale": {"type": "log"}}}, "transform": [{"calculate": "datum.x+10", "as": "fx"}, {"fold": ["fx"]}], "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json"}, {"mode": "vega-lite"});
-</script>
+![svg](Linear%20Regression%20Simulation_files/Linear%20Regression%20Simulation_31_0.svg)
 
 
 
@@ -406,7 +211,7 @@ print(params)
 cost = loss_function(params['m'],params['c'])
 ```
 
-    {'m': 19.669581838767286, 'c': 822.6342542476934}
+    {'m': 33.69730251237911, 'c': 370.9804900283152}
 
 
 
@@ -469,11 +274,11 @@ for i in range(ITERATIONS):
 ```python
 #Output discarded for being too large.
 print(params)
-print(loss_function(0.9663325792000524,90.4196277321998))
+print(loss_function(params['m'],params['c']))
 ```
 
-    {'m': 0.9664734151151319, 'c': 91.31034039313383}
-    6722264.006349455
+    {'m': 0.9666199783866358, 'c': 90.58371920229983}
+    6722249.536779261
 
 
 
@@ -489,70 +294,21 @@ alt.Chart(frame).mark_point().encode(
 ```
 
        Iterations          Cost
-    0           1  1.221542e+10
-    1           7  8.822840e+09
-    2           8  4.642547e+09
+    0           0  5.375457e+10
+    1           2  3.868591e+10
+    2           3  3.401575e+10
 
 
 
 
 
-
-<div id="altair-viz-0c18624f884c4cf6a164dd910ab3903c"></div>
-<script type="text/javascript">
-  (function(spec, embedOpt){
-    let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-0c18624f884c4cf6a164dd910ab3903c") {
-      outputDiv = document.getElementById("altair-viz-0c18624f884c4cf6a164dd910ab3903c");
-    }
-    const paths = {
-      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
-      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
-      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.8.1?noext",
-      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
-    };
-
-    function loadScript(lib) {
-      return new Promise(function(resolve, reject) {
-        var s = document.createElement('script');
-        s.src = paths[lib];
-        s.async = true;
-        s.onload = () => resolve(paths[lib]);
-        s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
-        document.getElementsByTagName("head")[0].appendChild(s);
-      });
-    }
-
-    function showError(err) {
-      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
-      throw err;
-    }
-
-    function displayChart(vegaEmbed) {
-      vegaEmbed(outputDiv, spec, embedOpt)
-        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
-    }
-
-    if(typeof define === "function" && define.amd) {
-      requirejs.config({paths});
-      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
-    } else if (typeof vegaEmbed === "function") {
-      displayChart(vegaEmbed);
-    } else {
-      loadScript("vega")
-        .then(() => loadScript("vega-lite"))
-        .then(() => loadScript("vega-embed"))
-        .catch(showError)
-        .then(() => displayChart(vegaEmbed));
-    }
-  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-6c49e906b6ca4fd272738ff082d7e501"}, "mark": "point", "encoding": {"x": {"type": "quantitative", "field": "Iterations"}, "y": {"type": "quantitative", "field": "Cost", "scale": {"type": "log"}}}, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-6c49e906b6ca4fd272738ff082d7e501": [{"Iterations": 1, "Cost": 12215416320.710657}, {"Iterations": 7, "Cost": 8822839920.72128}, {"Iterations": 8, "Cost": 4642546824.596871}, {"Iterations": 9, "Cost": 1451258120.3004317}, {"Iterations": 10, "Cost": 99780504.54059175}, {"Iterations": 15, "Cost": 32627927.38495094}, {"Iterations": 31, "Cost": 28361591.190102544}, {"Iterations": 86, "Cost": 20454251.535725743}, {"Iterations": 89, "Cost": 10939505.79530641}, {"Iterations": 277, "Cost": 9576329.130038567}, {"Iterations": 344, "Cost": 7829320.874370154}, {"Iterations": 512, "Cost": 7217129.169795612}, {"Iterations": 643, "Cost": 6879137.740920027}, {"Iterations": 718, "Cost": 6835735.409195979}, {"Iterations": 782, "Cost": 6745759.562308909}, {"Iterations": 2233, "Cost": 6738727.902571717}, {"Iterations": 2245, "Cost": 6733058.867785064}, {"Iterations": 7248, "Cost": 6726704.35494863}, {"Iterations": 8429, "Cost": 6723898.650653476}, {"Iterations": 9101, "Cost": 6723810.188895634}, {"Iterations": 9500, "Cost": 6723364.250746809}, {"Iterations": 9558, "Cost": 6722631.981075335}, {"Iterations": 9733, "Cost": 6722304.159040615}, {"Iterations": 9927, "Cost": 6722244.71299463}]}}, {"mode": "vega-lite"});
-</script>
+![svg](Linear%20Regression%20Simulation_files/Linear%20Regression%20Simulation_43_1.svg)
 
 
 
 Wow! Look at that! After just 10000 iterations (taking a minute or two), the simulation has seemed to hone in on some values pretty clearly. 
 
-$$ y = 0.96647x + 91.310 $$
+$$ y = 0.96662x + 90.584 $$
 
 Let's examine them on the graph:
 
@@ -567,7 +323,7 @@ c1 = alt.Chart(dataframe).mark_point(clip=True).encode(
 
 
 c2 = alt.Chart(source).mark_line(clip=True).transform_calculate(
-    fx='0.9664734151151319*datum.x+91.31034039313383',
+    fx='0.9666199783866358*datum.x+90.58371920229983',
 ).transform_fold(
     ['fx']
 ).encode(
@@ -581,56 +337,7 @@ alt.layer(c1,c2)
 
 
 
-
-<div id="altair-viz-1dd156d9de754e3ebcd78db3dfd99368"></div>
-<script type="text/javascript">
-  (function(spec, embedOpt){
-    let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-1dd156d9de754e3ebcd78db3dfd99368") {
-      outputDiv = document.getElementById("altair-viz-1dd156d9de754e3ebcd78db3dfd99368");
-    }
-    const paths = {
-      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
-      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
-      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.8.1?noext",
-      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
-    };
-
-    function loadScript(lib) {
-      return new Promise(function(resolve, reject) {
-        var s = document.createElement('script');
-        s.src = paths[lib];
-        s.async = true;
-        s.onload = () => resolve(paths[lib]);
-        s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
-        document.getElementsByTagName("head")[0].appendChild(s);
-      });
-    }
-
-    function showError(err) {
-      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
-      throw err;
-    }
-
-    function displayChart(vegaEmbed) {
-      vegaEmbed(outputDiv, spec, embedOpt)
-        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
-    }
-
-    if(typeof define === "function" && define.amd) {
-      requirejs.config({paths});
-      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
-    } else if (typeof vegaEmbed === "function") {
-      displayChart(vegaEmbed);
-    } else {
-      loadScript("vega")
-        .then(() => loadScript("vega-lite"))
-        .then(() => loadScript("vega-embed"))
-        .catch(showError)
-        .then(() => displayChart(vegaEmbed));
-    }
-  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "layer": [{"data": {"name": "data-038fe16cf7fa3ac06dc0e6e21d97a694"}, "mark": {"type": "point", "clip": true}, "encoding": {"x": {"type": "quantitative", "field": "Brain Weight", "scale": {"domain": [0, 500]}}, "y": {"type": "quantitative", "field": "Body Weight", "scale": {"domain": [0, 600]}}}}, {"data": {"sequence": {"start": 1, "stop": 10000, "step": 0.5, "as": "x"}}, "mark": {"type": "line", "clip": true}, "encoding": {"color": {"type": "nominal", "field": "key"}, "x": {"type": "quantitative", "field": "x"}, "y": {"type": "quantitative", "field": "value"}}, "transform": [{"calculate": "0.9664734151151319*datum.x+91.31034039313383", "as": "fx"}, {"fold": ["fx"]}]}], "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-038fe16cf7fa3ac06dc0e6e21d97a694": [{"Brain Weight": 3.385, "Body Weight": 44.5}, {"Brain Weight": 0.48, "Body Weight": 15.5}, {"Brain Weight": 1.35, "Body Weight": 8.1}, {"Brain Weight": 465.0, "Body Weight": 423.0}, {"Brain Weight": 36.33, "Body Weight": 119.5}, {"Brain Weight": 27.66, "Body Weight": 115.0}, {"Brain Weight": 14.83, "Body Weight": 98.2}, {"Brain Weight": 1.04, "Body Weight": 5.5}, {"Brain Weight": 4.19, "Body Weight": 58.0}, {"Brain Weight": 0.425, "Body Weight": 6.4}, {"Brain Weight": 0.101, "Body Weight": 4.0}, {"Brain Weight": 0.92, "Body Weight": 5.7}, {"Brain Weight": 1.0, "Body Weight": 6.6}, {"Brain Weight": 0.005, "Body Weight": 0.14}, {"Brain Weight": 0.06, "Body Weight": 1.0}, {"Brain Weight": 3.5, "Body Weight": 10.8}, {"Brain Weight": 2.0, "Body Weight": 12.3}, {"Brain Weight": 1.7, "Body Weight": 6.3}, {"Brain Weight": 2547.0, "Body Weight": 4603.0}, {"Brain Weight": 0.023, "Body Weight": 0.3}, {"Brain Weight": 187.1, "Body Weight": 419.0}, {"Brain Weight": 521.0, "Body Weight": 655.0}, {"Brain Weight": 0.785, "Body Weight": 3.5}, {"Brain Weight": 10.0, "Body Weight": 115.0}, {"Brain Weight": 3.3, "Body Weight": 25.6}, {"Brain Weight": 0.2, "Body Weight": 5.0}, {"Brain Weight": 1.41, "Body Weight": 17.5}, {"Brain Weight": 529.0, "Body Weight": 680.0}, {"Brain Weight": 207.0, "Body Weight": 406.0}, {"Brain Weight": 85.0, "Body Weight": 325.0}, {"Brain Weight": 0.75, "Body Weight": 12.3}, {"Brain Weight": 62.0, "Body Weight": 1320.0}, {"Brain Weight": 6654.0, "Body Weight": 5712.0}, {"Brain Weight": 3.5, "Body Weight": 3.9}, {"Brain Weight": 6.8, "Body Weight": 179.0}, {"Brain Weight": 35.0, "Body Weight": 56.0}, {"Brain Weight": 4.05, "Body Weight": 17.0}, {"Brain Weight": 0.12, "Body Weight": 1.0}, {"Brain Weight": 0.023, "Body Weight": 0.4}, {"Brain Weight": 0.01, "Body Weight": 0.25}, {"Brain Weight": 1.4, "Body Weight": 12.5}, {"Brain Weight": 250.0, "Body Weight": 490.0}, {"Brain Weight": 2.5, "Body Weight": 12.1}, {"Brain Weight": 55.5, "Body Weight": 175.0}, {"Brain Weight": 100.0, "Body Weight": 157.0}, {"Brain Weight": 52.16, "Body Weight": 440.0}, {"Brain Weight": 10.55, "Body Weight": 179.5}, {"Brain Weight": 0.55, "Body Weight": 2.4}, {"Brain Weight": 60.0, "Body Weight": 81.0}, {"Brain Weight": 3.6, "Body Weight": 21.0}, {"Brain Weight": 4.288, "Body Weight": 39.2}, {"Brain Weight": 0.28, "Body Weight": 1.9}, {"Brain Weight": 0.075, "Body Weight": 1.2}, {"Brain Weight": 0.122, "Body Weight": 3.0}, {"Brain Weight": 0.048, "Body Weight": 0.33}, {"Brain Weight": 192.0, "Body Weight": 180.0}, {"Brain Weight": 3.0, "Body Weight": 25.0}, {"Brain Weight": 160.0, "Body Weight": 169.0}, {"Brain Weight": 0.9, "Body Weight": 2.6}, {"Brain Weight": 1.62, "Body Weight": 11.4}, {"Brain Weight": 0.104, "Body Weight": 2.5}, {"Brain Weight": 4.235, "Body Weight": 50.4}]}}, {"mode": "vega-lite"});
-</script>
+![svg](Linear%20Regression%20Simulation_files/Linear%20Regression%20Simulation_45_0.svg)
 
 
 
@@ -672,7 +379,7 @@ print(loss_function(0.9659362423807267,91.29398751426505))
     6722256.498220906
 
 
-Interesting... This only barely improved our result (cost) but took 10 times longer. There are a number of factors at play:
+Interesting... These extra iterations didn't even improve our result (cost) but took 10 times longer. There are a number of factors at play:
 * Simulated Annealing is a complex process with many different parameters that can be tweaked (e.g. the form of our probability function and range scaling factors) and general optimizations. 
 * It is a stochastic (rather than deterministic) process so it's entirely possible to have a bad run/bad initial values and get poor results.
 
@@ -680,7 +387,7 @@ Also of note: We permitted the variables to change within fairly large domains. 
 
 So, the best regression we obtained (the one with the lowest cost) was:
 
-$$ y = 0.96594x + 91.2940 $$
+$$ y = 0.96594x + 91.2940 $$ 
 
 
 ### Approach via Statistical Methods
@@ -761,15 +468,15 @@ loss_function(0.9664963676725763,91.00439620740684)
 
 
 
-And look at that! The proven statistical values match the simulation-derived ones (to 1 decimal place):
+And look at that! The proven statistical values match the simulation-derived ones pretty closely:
 
-$$ y = 0.96594x + 91.2940 \quad Cost: \space 6722256$$
+$$ y = 0.96662x + 90.584 \quad Cost: \space 6722250$$
 
 $$ vs. $$
 
 $$ y = 0.96650x + 91.004 \quad Cost: \space 6722239$$
 
-So the cost values only differ by ≈17 which doesn't seem bad given the massive cost values passed over during simulation.
+So the cost values only differ by ≈11 which doesn't seem bad given the massive cost values passed over during simulation.
 
 And yes, there are a whole bunch of things I haven't covered here - R^2 Coefficients, Multivariate Linear Regression, Non-Linear Regression - but this notebook is already beginning to drag! 
 
